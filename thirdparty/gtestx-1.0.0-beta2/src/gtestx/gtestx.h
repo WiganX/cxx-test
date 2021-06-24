@@ -56,11 +56,11 @@
 
 #define _TO_STR(sym) #sym
 #define _PERF_TEST_BODY(opt_hz, opt_time) \
-    GFLAGS_NAMESPACE::FlagSaver flag_saver;\
+    google::FlagSaver flag_saver;\
     if (opt_hz >= 0)\
-      GFLAGS_NAMESPACE::SetCommandLineOptionWithMode("hz", _TO_STR(opt_hz), GFLAGS_NAMESPACE::SET_FLAG_IF_DEFAULT);\
+      google::SetCommandLineOptionWithMode("hz", _TO_STR(opt_hz), google::SET_FLAG_IF_DEFAULT);\
     if (opt_time >= 0)\
-      GFLAGS_NAMESPACE::SetCommandLineOptionWithMode("time", _TO_STR(opt_time), GFLAGS_NAMESPACE::SET_FLAG_IF_DEFAULT);\
+      google::SetCommandLineOptionWithMode("time", _TO_STR(opt_time), google::SET_FLAG_IF_DEFAULT);\
     gtestx::Perf::Run();
 
 #define PERF_TEST_CLASS_NAME_(test_case_name, test_name) \
@@ -252,7 +252,7 @@
 #define PERF_TEST_MAIN \
   int main(int argc, char** argv) { \
     testing::InitGoogleTest(&argc, argv); \
-    GFLAGS_NAMESPACE::ParseCommandLineFlags(&argc, &argv, true); \
+    google::ParseCommandLineFlags(&argc, &argv, true); \
     return RUN_ALL_TESTS(); \
   }
 
